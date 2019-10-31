@@ -13,6 +13,7 @@ from pprint import pprint
 import requests as req
 import datetime
 import os
+from time import gmtime, strftime
 consumer_key = os.environ.get("consumer_key")
 consumer_secret = os.environ.get("consumer_secret")
 access_token = os.environ.get("access_token")
@@ -54,17 +55,20 @@ def WeatherTweet():
     dc_weather = weather_json['main']['temp']
     pprint(dc_weather)
     
+    #Time
+    time = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+    
     # Twitter credentials
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
     api = tweepy.API(auth, parser=tweepy.parsers.JSONParser())
 
     # Tweet the weather
-    api.update_status(f"Now the weather is DC is {dc_weather}. Not a bot")
+    api.update_status(f"Now the weather is DC is {dc_weather}. The time is {time}. Not a bot")
 
 
     # Print success message
-    print(f"Iteration #, {dc_weather}")
+    print(f"Iteration #, {dc_weather}, {time}")
 
 
 # In[28]:
