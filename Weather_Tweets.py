@@ -81,7 +81,7 @@ while(True):
     WeatherTweet()
 
     # Once tweeted, wait 60 seconds before doing anything else
-    time.sleep(3600)
+    time.sleep(60)
 
 
 # In[ ]:
